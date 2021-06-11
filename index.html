@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days To Sangria</title>
+</head>
+<body>
+    <h1>Days left to sangria:
+        <span id="daysLeft">
+            3
+        </span>
+    </h1>
+    <script>
+        let el = document.getElementById('daysLeft');
+        let daysLeft = new Date('2021-06-15').getDate() - new Date().getDate();
+        el.innerHTML = daysLeft;
+    </script>
+</body>
+</html>
