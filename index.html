@@ -7,15 +7,28 @@
     <title>Days To Sangria</title>
 </head>
 <body>
-    <h1>Days left to sangria:
-        <span id="daysLeft">
-            3
-        </span>
+    <h1 style="display: none;">Days left to sangria:
+        <span id="daysLeft"></span>
     </h1>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script>
-        let el = document.getElementById('daysLeft');
-        let daysLeft = new Date('2021-06-15').getDate() - new Date().getDate();
-        el.innerHTML = daysLeft;
+        const el = document.getElementById('daysLeft');
+        const title = document.getElementsByTagName('title')[0];
+        const target = dayjs('2021-06-15 18:00:00');
+
+        function update() {
+            const now = new Date();
+            now.setHours(0, 0, 0, 0);
+            let daysLeft = target.diff(dayjs(now), 'day');
+
+            el.innerHTML = daysLeft;
+            title.innerHTML = `Days To Sangria: ${daysLeft}`
+        }
+
+        update();
+        document.getElementsByTagName('h1')[0].style.display = 'block';
+        setInterval(update, 60 * 1000);
+
     </script>
 </body>
 </html>
