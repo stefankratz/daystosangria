@@ -2,31 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Days To Sangria</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <h1 style="display: none;">Days left to sangria:
+    <h1 class="hidden">Days left to sangria:
         <span id="daysLeft"></span>
     </h1>
-    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script>
+        const target = new Date("2025-04-02 15:00");
         const el = document.getElementById('daysLeft');
         const title = document.getElementsByTagName('title')[0];
-        const target = dayjs('2025-04-02 15:00:00');
 
         function update() {
             const now = new Date();
-            now.setHours(0, 0, 0, 0);
-            let daysLeft = target.diff(dayjs(now), 'day');
+            const diff = target.getTime() - now.getTime();
+            const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
 
             el.innerHTML = daysLeft;
             title.innerHTML = `Days To Sangria: ${daysLeft}`
         }
 
         update();
-        document.getElementsByTagName('h1')[0].style.display = 'block';
+        document.getElementsByTagName('h1')[0].classList.remove('hidden');
         setInterval(update, 60 * 1000);
 
     </script>
