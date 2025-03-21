@@ -8,28 +8,41 @@
         .hidden {
             display: none;
         }
-    </style>
+    </style>    
 </head>
 <body>
-    <h1 class="hidden">Days left to sangria:
-        <span id="daysLeft"></span>
-    </h1>
+    <main class="container">
+        <h1 class="hidden" id="daysLeft"></h1>
+        <dl>
+            <dt>När?</dt>
+            <dd>2 april, 15:00</dd>
+            <dt>Var?</dt>
+            <dd>Oklart</dd>
+            <dt>Varför?</dt>
+            <dd>Switch 2 ffs</dd>
+            <dt>Kommer det att serveras sangria?</dt>
+            <dd>Ja</dd>
+            <dt>Blir det nån bingo?</dt>
+            <dd>Kanske</dd>
+        </dl>
+    </main>
+
     <script>
-        const target = new Date("2025-04-02");
-        const el = document.getElementById('daysLeft');
-        const title = document.getElementsByTagName('title')[0];
+        const targetDate = new Date("2025-04-02");
+        const headingElement = document.getElementById('daysLeft');
+        const titleElement = document.getElementsByTagName('title')[0];
 
         function update() {
             const now = new Date();
-            const diff = target.getTime() - now.getTime();
+            const diff = targetDate.getTime() - now.getTime();
             const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
 
-            el.innerHTML = daysLeft;
-            title.innerHTML = `Days To Sangria: ${daysLeft}`
+            headingElement.innerHTML = `Dagar kvar till sangria: ${daysLeft}`;
+            titleElement.innerHTML = `Days To Sangria: ${daysLeft}`
         }
 
         update();
-        document.getElementsByTagName('h1')[0].classList.remove('hidden');
+        daysLeft.classList.remove('hidden');
         setInterval(update, 60 * 1000);
 
     </script>
